@@ -3,6 +3,7 @@ import axios from "axios";
 import { Card } from "antd";
 import Meta from "antd/es/card/Meta";
 import { https } from "../../service/config";
+import { NavLink } from "react-router-dom";
 
 export default function ListMovie() {
   const [movieArr, setMovieArr] = useState([]);
@@ -27,7 +28,7 @@ export default function ListMovie() {
       });
   }, []);
   return (
-    <div className="grid grid-cols-5 gap-5 container">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 xl:grid-cols-5 gap-5 container">
       {movieArr.map((item) => {
         return (
           <Card
@@ -38,6 +39,12 @@ export default function ListMovie() {
             cover={<img alt="example" src={item.hinhAnh} />}
           >
             <Meta title={item.tenPhim} description="www.instagram.com" />
+            <NavLink
+              to={`/detail/${item.maPhim}`}
+              className="px-5 py-2 rounded border-2 border-red-500 block text-center mt-2"
+            >
+              Xem chi tiết
+            </NavLink>
           </Card>
         );
       })}
